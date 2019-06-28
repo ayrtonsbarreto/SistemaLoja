@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templates/template.xhtml">
+
+    <ui:define name="metadata">
+        <f:event listener="#{MBFornecedores.prepararPesquisa}" type="preRenderView" />
+    </ui:define>
+    <ui:define name="conteudo">
+        <f:event listener="#{MBFornecedores.prepararPesquisa}" type="preRenderView" />
+        <h:form>
+            <p:toolbar>
+                <f:facet name="left"> </f:facet>
+                <h:outputText value="Fornecedores" />
+            </p:toolbar>
+            <h:panelGrid columns="4">
+                <p:outputLabel value="Descrição" />
+                <p:inputText maxlength="50" size="30"/>
+                <p:button value="Buscar" />
+                <p:button value="Novo" outcome="/pages/fornecedorCadastro.xhtml" />
+            </h:panelGrid>
+
+            <p:dataTable emptyMessage="Nenhum registro cadastrado" value="#{MBFornecedores.itens}" filteredValue="#{MBFornecedores.itensFiltrados}"
+                         var="fornecedor"
+                         rows="10"
+                         paginator="true"
+                         >
+                <p:column headerText="Código">
+                    <h:outputText value="#{fornecedor.codigo}" />
+                </p:column>
+                <p:column headerText="Descrição" filterBy="#{fornecedor.descricao}" sortBy="#{fornecedor.descricao}">
+                    <h:outputText value="#{fornecedor.descricao}" />
+                </p:column>
+                <p:column headerText="Opções">
+                    <p:button icon="ui-icon-pencil" outcome="/pages/fornecedorCadastro.xhtml">
+                              <f:param name="forcod" value="#{fornecedor.codigo}"/>
+                    </p:button>
+                    <p:button icon="ui-icon-trash" outcome="/pages/fornecedorCadastro.xhtml">
+                        <f:param name="forcod" value="#{fornecedor.codigo}"/>
+                    </p:button>    
+                </p:column>
+            </p:dataTable>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

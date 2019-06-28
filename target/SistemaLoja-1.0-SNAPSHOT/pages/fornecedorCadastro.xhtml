@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templates/template.xhtml">
+
+    <ui:define name="conteudo">
+        <h:form id="frmforcad">
+            <p:toolbar>
+                <f:facet name="left"> </f:facet>
+                <h:outputText value="Fornecedores" />
+            </p:toolbar>
+            <h:panelGrid columns="2" id="pnforcad">
+                <p:outputLabel value="Código" />
+                <p:inputText maxlength="20" size="10" readonly="true" value="#{MBFornecedores.fornecedores.codigo}"/>
+                <p:outputLabel value="Descrição" />
+                <p:inputText maxlength="50" size="30" value="#{MBFornecedores.fornecedores.descricao}" />
+            </h:panelGrid>
+
+            <h:panelGrid columns="3">
+                <p:commandButton value="Novo" actionListener="#{MBFornecedores.novo}" update=":frmforcad:pnforcad"/>
+                <p:commandButton value="Salvar" actionListener="#{MBFornecedores.salvar}" update=":msgGlobal :frmforcad:pnforcad"/>
+                <p:button value="Voltar" outcome="/pages/fornecedorPesquisa.xhtml"/>
+                <p:commandButton value="Excluir" actionListener="#{MBFornecedores.excluir}" update=":msgGlobal"/>
+                <p:commandButton value="Editar" />
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Configuração da conexão com o banco MySQL e dialeto -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property> <!-- driver padrão do JDBC - mysql-conector -->
+        <property name="connection.url">jdbc:mysql://localhost:3306/lojadb</property> 
+        <property name="connection.username">root</property>
+        <property name="connection.password"></property>
+        <property name="current_session_context_class">thread</property> <!-- Gerenciamento da sessão mysl -->
+        <property name="hibernate.hbm2ddl.auto">update</property>  <!-- Atualização e criação das tabelas -->
+
+        <!-- Configurações de debug -->
+
+        <property name="show_sql">true</property> <!-- exibe os comandos sql -->
+        <property name="format_sql">true</property>
+        <property name="generate_statistics">true</property>
+        <property name="use_sql_comments">false</property>
+	
+                        
+        <mapping class="modelo.Autenticacao"/>
+        <mapping class="modelo.Funcionario"/>
+        <mapping class="modelo.Gerente"/>
+        <mapping class="modelo.Fornecedor"/>
+        <mapping class="modelo.Produto"/>
+        <mapping class="modelo.Item"/>			
+        <!-- Mapeando classes --> 
+       <!-- <mapping class="com.ufrn.testmaven.model.Livro"/>
+        <mapping class="com.ufrn.testmaven.model.Filme"/>
+        <mapping class="com.ufrn.testmaven.model.Gerente"/>
+        <mapping class="com.ufrn.testmaven.model.Cliente"/>
+        <mapping class="com.ufrn.testmaven.model.Autentica"/>
+        <mapping class="com.ufrn.testmaven.model.Pedido"/> -->
+        
+    </session-factory>
+</hibernate-configuration>
